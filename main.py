@@ -5,20 +5,23 @@ import time
 
 def functionMain():   
     count = 0
+
     while keyboard.is_pressed('c') == False:
 
-        time.sleep(3)    
-        pyautogui.press('end')
+        time.sleep(3)  
+        pyautogui.hotkey('ctrl', 'f')
+        time.sleep(1)
+        pyautogui.write('Ano A', interval=0.05)
+        time.sleep(1)
+        pyautogui.press('enter')
         time.sleep(2)
-        #CAPTURA POSIÇÃO VOTO
-        #TAMANHO PAGINA 75%
-        positionCandidato = pyautogui.locateOnScreen('candidato.png')
+        positionCandidato = pyautogui.locateOnScreen('spanA.png', grayscale=True,confidence=0.7)
         if (positionCandidato != None):
             positionCenterCandidato = pyautogui.center(positionCandidato)
             pyautogui.click(positionCenterCandidato.x,positionCenterCandidato.y)
 
         time.sleep(2)
-
+        
         positionButton = pyautogui.locateOnScreen('salvar-button.png', grayscale=True,confidence=0.7)
         if (positionButton != None):
             positionCenterButton = pyautogui.center(positionButton)
@@ -33,7 +36,7 @@ def functionMain():
             time.sleep(1)
             pyautogui.moveTo((positionCenterNovamente.x+320),(positionCenterNovamente.y))
 
-        time.sleep(2)
+        time.sleep(1)
         count += 1 
         salvaLog(count)
 
